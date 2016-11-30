@@ -3,6 +3,7 @@ package bg.elsys.ip.rest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class MovieService {
 	private static MovieService instance;
@@ -57,12 +58,13 @@ public class MovieService {
 		List<Movie> filteredByGenre = filteredByDirector.stream()
 				.filter((movie) -> movie.getGenre().equals(genre) || genre == null)
 				.collect(Collectors.toList());
-		List<Movie> filtered = filteredByGenre.stream()
-			.filter((movie) -> movie.getYear().equals(year) || year == null).skip(page * perPage)
-			.limit(perPage).collect(Collectors.toList());
-		
-		
-		int totalPages =(int) Math.ceil(moviesList.size() / perPage);
+		List<Movie> allFiltered = filteredByGenre.stream()
+			.filter((movie) -> movie.getYear().equals(year) || year == null).collect(Collectors.toList());
+		int filteredCount = allFiltered.size();
+		int lastElement = (page*perPage+perPage > allFiltered.size())?allFiltered.size():page*perPage+perPage;
+		List<Movie> filtered = allFiltered.subList(page*perPage, lastElement);
+		System.out.println(allFiltered.size()+" "+perPage+" "+allFiltered.size() / perPage);
+		int totalPages =(int) Math.ceil((double) filteredCount / perPage);
 		return new PaginatedResource(filtered, perPage, page, totalPages);
 	}
 }
