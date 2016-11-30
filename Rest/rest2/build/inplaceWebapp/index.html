@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="index.css">
+<script src="https://code.jquery.com/jquery-3.1.1.js" charset="utf-8"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+</script>
+<script src="scripts.js"></script>
+
+<title>Emiliyan Gospodinov XII B</title>
+</head>
+<body>
+  <form id="addMovieForm">
+    <label>Movie name: </label>
+    <input type="text" name="name">
+    <label>Director name: </label>
+    <input type="text" name="director">
+    <label>Year the movie was made: </label>
+    <input type="text" name="year">
+    <label>Movie genre: </label>
+    <input type="text" name="genre"><br>
+	  <input type="submit" value="Send">
+  </form>
+  <br>
+  <br>
+  <form id="SortMovies">
+    Choose Director:
+    <input type="text" name="chooseDirectors" id="filterDirector" >
+    Select ganre:
+    <select id="filterGenre">
+      <option value="">All genres</option>
+    </select>
+    Select year:
+    <input type="text" name="sortYear" id="filterYear" >
+    <input type="submit" id="search" value="Search">
+  </form>
+	<table id="moviesTable">
+		<tr>
+		  <th>Movie</th>
+		  <th>Director</th>
+		  <th>Year</th>
+		  <th>Genre</th>
+		</tr>
+	</table>
+  <button id="nextPage">Show More</button>
+</body>
+</html>
